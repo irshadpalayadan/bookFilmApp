@@ -20,6 +20,7 @@ const theatreDetailStyle = StyleSheet.create({
 });
 
 
+
 export class TheatreDetail extends React.Component{
   render() {
     return(
