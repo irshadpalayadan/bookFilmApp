@@ -17,6 +17,17 @@ const theatreStyle = StyleSheet.create({
 
 });
 
+class Theatre  extends React.Component{
+    render() {
+        return(
+            <View style={theatreStyle.theatreStyle}>
+                <TheatreDetail details={["Cenepolis", "center square mall", "90"]}/>
+                <ShowTimeList timeList={["10.15 AM", "12.15 PM", ""]}/>
+            </View>
+        );
+    }
+}
+
 
 export class TheatreList extends React.Component{
   constructor(props) {
@@ -25,10 +36,7 @@ export class TheatreList extends React.Component{
     render() {
         return(
                 <ScrollView>
-                    <View style={theatreStyle.theatreStyle}>
-                        <TheatreDetail details={["Cenepolis", "center square mall", "90"]}/>
-                        <ShowTimeList timeList={["10.15 AM", "12.15 PM", ""]}/>
-                    </View>
+                    <Theatre/>
                 </ScrollView>
         );
     }
