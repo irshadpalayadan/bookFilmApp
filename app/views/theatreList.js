@@ -8,9 +8,9 @@ import {TheatreDetail} from './theatreDetail'
 
 const theatreStyle = StyleSheet.create({
   theatreStyle: {
-    minWidth:"90%",
-    maxWidth:"90%",
-    margin:"5%",
+    minWidth:"92%",
+    maxWidth:"92%",
+    margin: 10,
     borderColor:'#f00',
     borderWidth: 1
     },
@@ -22,9 +22,7 @@ class Theatre  extends React.Component{
         return(
             <View style={theatreStyle.theatreStyle}>
                 <TheatreDetail details={[this.props.theatre.name, this.props.theatre.place, this.props.theatre.rate]}/>
-                {
-                    <ShowTimeList timeList={this.props.theatre.shows}/>
-                }
+                <ShowTimeList timeList={this.props.theatre.shows}/>
             </View>
         );
     }
@@ -42,8 +40,6 @@ export class TheatreList extends React.Component{
                       this.props.thetreList.map((theatre) => (
                        <Theatre theatre={theatre}/>
                       ))
-
-                      
                     }
                 </ScrollView>
         );

@@ -25,15 +25,7 @@ const showTimeStyle = StyleSheet.create({
   });
 
 
-class ShowTime extends React.Component{
-    render() {
-        return(
-            <View style={[ showTimeStyle.showTimeStyle, this.props.Time != '' && showTimeStyle.showTimeBorderStyle]}>
-              <Text>{this.props.Time}</Text>
-            </View>
-        );
-    }
-}
+
 
 export class ShowTimeList extends React.Component{
     render() {
@@ -41,7 +33,9 @@ export class ShowTimeList extends React.Component{
             <View style={showTimeStyle.showTimeListStyle}>
             {
                 this.props.timeList.map((time) => (
-                  <ShowTime Time={time}/>
+                  <View style={[ showTimeStyle.showTimeStyle, time != '' && showTimeStyle.showTimeBorderStyle]}>
+                    <Text>{time}</Text>
+                  </View>
                 ))
             }
             </View>

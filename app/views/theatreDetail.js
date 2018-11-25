@@ -5,7 +5,7 @@ import { StyleSheet, ScrollView, View, Text} from 'react-native';
 const theatreDetailStyle = StyleSheet.create({
   
     theatreDetailStyle : {
-      margin: '2.5%',
+      margin: 10,
       flexDirection: 'row',
     },
     
