@@ -19,6 +19,8 @@ constructor() {
 
 
   render() {
+    //TODO : Remove this when tab switch is introduced
+    this._onPressButton();
     return (
       <View style={styles.container}>
         <Button onPress={this._onPressButton} title='runningMovie'/>
