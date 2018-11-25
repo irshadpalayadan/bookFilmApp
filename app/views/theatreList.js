@@ -21,8 +21,10 @@ class Theatre  extends React.Component{
     render() {
         return(
             <View style={theatreStyle.theatreStyle}>
-                <TheatreDetail details={["Cenepolis", "center square mall", "90"]}/>
-                <ShowTimeList timeList={["10.15 AM", "12.15 PM", ""]}/>
+                <TheatreDetail details={[this.props.theatre.name, this.props.theatre.place, this.props.theatre.rate]}/>
+                {
+                    <ShowTimeList timeList={this.props.theatre.shows}/>
+                }
             </View>
         );
     }
@@ -36,7 +38,13 @@ export class TheatreList extends React.Component{
     render() {
         return(
                 <ScrollView>
-                    <Theatre/>
+                    {
+                      this.props.thetreList.map((theatre) => (
+                       <Theatre theatre={theatre}/>
+                      ))
+
+                      
+                    }
                 </ScrollView>
         );
     }

@@ -39,9 +39,11 @@ export class ShowTimeList extends React.Component{
     render() {
         return(
             <View style={showTimeStyle.showTimeListStyle}>
-                <ShowTime Time={this.props.timeList[0]}/>
-                <ShowTime Time={this.props.timeList[1]}/>
-                <ShowTime Time={this.props.timeList[2]}/>
+            {
+                this.props.timeList.map((time) => (
+                  <ShowTime Time={time}/>
+                ))
+            }
             </View>
         );
     }

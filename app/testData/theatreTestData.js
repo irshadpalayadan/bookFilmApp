@@ -1,6 +1,6 @@
-class TheatreTestData {
+const TheatreTestData = {
 
-    getTheatreByDate(filmName, date, location) {
+    getTheatreByDate: function(filmName, date, location) {
             if (date == "01/01/2018") {
 
         return    [
