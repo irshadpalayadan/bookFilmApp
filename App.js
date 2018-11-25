@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View } from 'react-native';
-import {TheatreList} from 'app/views/theatreList.js'
+import {TheatreList} from './app/views/theatreList'
 
 import TheatreService from './app/api/theatre'
 
