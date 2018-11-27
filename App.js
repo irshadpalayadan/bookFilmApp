@@ -13,12 +13,12 @@ constructor() {
   this.loc = 'tvpm';
   this.state = { isLoading: true };
 }
-  getTheatreData(){
+  componentDidMount(){
     TheatreService.getTheatreListByDate(this.film, this.date, this.loc)
     .then((response) => response.json())
     .then((responseJson) => {
         this.setState({
-          isLoading: true,
+          isLoading: false,
           data: responseJson
         },function(){});
     })
@@ -29,6 +29,7 @@ constructor() {
 
 
   render() {
+    console.log('stage 1');
     //TODO : Remove this when tab switch is introduced
     if(this.state.isLoading){
       return(
