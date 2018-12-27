@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { View, Button, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import authService from '../api/auth'
 import styles from '../styles/signinStyle';
 
 class SignIn extends React.Component {
 
-  constructor() {
+;  constructor() {
         super();
         this.state = {
             username: '',
@@ -14,45 +15,45 @@ class SignIn extends React.Component {
     }
 
 
-    _onValueChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-  
-
     _submitSignin = () => {
-        
 
+        authService.signin()
+        .then(res => res.json())
+        .then((resJson) => {
+            console.log(resJson);
+        })
     }
+
+
     render() {
         return(
-            <View style={styles.SignInOutBox}>
-                    <form style={styles.SignInOutForm}>
-                        <Text style={styles.SignInOutTitle}>Login</Text>
-                        <View style={styles.textBlock}>
-						    <Text style={styles.textBlockLabel}>Username</Text>
-						    <input style={styles.textBlockInput} type="text" name="username" value={this.state.username} onChange = {this._onValueChange}  placeholder="Type your username"></input>
-                            <Ionicons style={styles.ionicons}/>
-                        </View>
-                        <View style={styles.passwordBlock} data-validate="Password is required">
-						    <Text style={styles.passBlockLabel}>Password</Text>
-						    <input style={styles.passBlockInput} type="password" name="password" value={this.state.password} onChange = {this._onValueChange} placeholder="Type your password"></input>
-                            <Ionicons glyph="lock" style={styles.ionicons}/>
-					    </View>
-                        <View style={styles.forgotPassword}>
-                            <Text style={styles.anchorLikeText} >Forgot password? </Text>
-					    </View>
-                        <Button onClick={() => this._submitSignin()}> Login </Button>
-                        
-                        <a style={styles.googleSignDiv} >
-                            <Text style={styles.googleSignImg}></Text>
-                            <Text style={styles.googleSignText}> SignIn With Google</Text>
-                        </a>
-                        <View style={styles.newUserLink}>
-                            <Text style={styles.anchorLikeText} > New User? </Text>
-					    </View>
-                    </form>
+            <View style={styles.signinBox}>
+                <View style={styles.signinAppLogo}>
+                    <Text> Hello </Text>
                 </View>
+
+                <View style={styles.signinForm}>
+
+                    <TextInput style={styles.inputText} 
+                    placeholder='Username Or Email or Mobile'   
+                    placeholderTextColor='rgba(225,225,225,0.8)'
+                    autoCapitalize="none" 
+                    autoCorrect={false}                     
+                    keyboardType='email-address' 
+                    returnKeyType="next" 
+                    onChangeText={(text) => this.setState({username : text})}
+                    onSubmitEditing={() => this.passwordInput.focus()} />
+
+                    <TextInput style = {styles.inputText}   
+                    placeholder='Password' 
+                    placeholderTextColor='rgba(225,225,225,0.7)'
+                    returnKeyType="go" 
+                    onChangeText={(text) => this.setState({password : text})}
+                    secureTextEntry/>
+
+                    <Button title="SIGNIN" onPress={this._submitSignin}/>
+                </View>
+            </View>
         );
     }
 }
