@@ -1,5 +1,3 @@
-import TheatreTestData from '../testData/theatreTestData';
-
 const TheatreService = {
 
     
