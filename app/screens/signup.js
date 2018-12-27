@@ -3,21 +3,29 @@ import { View, Button, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import authService from '../api/auth'
 import styles from '../styles/signinStyle';
+import md5 from 'md5';
+
+/* TODO :   Add validations
+            Load component based on privillege
+*/
 
 class SignIn extends React.Component {
 
-;  constructor() {
+  constructor() {
         super();
         this.state = {
-            username: '',
-            password: '',
+            username : '',
+            phno : '',
+            email : '',
+            password :'',
+            password2 : '',
         }
     }
 
 
-    _submitSignin = () => {
+    _submitSignUp = () => {
 
-        authService.signin()
+        authService.signup(this.state.username, md5(this.state.password), this.state.phno, this.state.email)
         .then(res => res.json())
         .then((resJson) => {
             console.log(resJson);
@@ -48,7 +56,7 @@ class SignIn extends React.Component {
                     autoCorrect={false}                     
                     keyboardType='phone-pad' 
                     returnKeyType="next" 
-                    onChangeText={(text) => this.setState({username : text})} />
+                    onChangeText={(text) => this.setState({phno : text})} />
                     
                     <TextInput style={styles.inputText} 
                     placeholder='E-Mail'   
@@ -57,7 +65,7 @@ class SignIn extends React.Component {
                     autoCorrect={false}                     
                     keyboardType='email-address' 
                     returnKeyType="next" 
-                    onChangeText={(text) => this.setState({username : text})} />
+                    onChangeText={(text) => this.setState({email : text})} />
 
                     <TextInput style = {styles.inputText}   
                     placeholder='Password' 
@@ -73,7 +81,7 @@ class SignIn extends React.Component {
                     onChangeText={(text) => this.setState({password2 : text})}
                     secureTextEntry/>
 
-                    <Button title="SIGNUP" onPress={this._submitSignin}/>
+                    <Button title="SIGNUP" onPress={this._submitSignUp}/>
                 </View>
             </View>
         );

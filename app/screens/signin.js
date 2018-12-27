@@ -3,6 +3,7 @@ import { View, Button, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import authService from '../api/auth'
 import styles from '../styles/signinStyle';
+import md5 from 'md5';
 
 class SignIn extends React.Component {
 
@@ -15,9 +16,9 @@ class SignIn extends React.Component {
     }
 
 
-    _submitSignin = () => {
+    _submitSignIn = () => {
 
-        authService.signin()
+        authService.signin(this.state.username, md5(this.state.password))
         .then(res => res.json())
         .then((resJson) => {
             console.log(resJson);
@@ -51,7 +52,7 @@ class SignIn extends React.Component {
                     onChangeText={(text) => this.setState({password : text})}
                     secureTextEntry/>
 
-                    <Button title="SIGNIN" onPress={this._submitSignin}/>
+                    <Button title="SIGNIN" onPress={this._submitSignIn}/>
                 </View>
             </View>
         );
