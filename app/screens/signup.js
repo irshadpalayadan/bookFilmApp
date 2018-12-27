@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import authService from '../api/auth'
 import styles from '../styles/signinStyle';
@@ -48,7 +48,8 @@ class SignIn extends React.Component {
                     autoCapitalize="none" 
                     autoCorrect={false}
                     returnKeyType="next" 
-                    onChangeText={(text) => this.setState({username : text})} />
+                    onChangeText={(text) => this.setState({username : text})}
+                    onSubmitEditing={() => this.phoneInput.focus()}/>
 
                     <TextInput style={styles.inputText} 
                     placeholder='Mobile'   
@@ -56,7 +57,9 @@ class SignIn extends React.Component {
                     autoCorrect={false}                     
                     keyboardType='phone-pad' 
                     returnKeyType="next" 
-                    onChangeText={(text) => this.setState({phno : text})} />
+                    onChangeText={(text) => this.setState({phno : text})}
+                    ref={(input)=> this.phoneInput = input}  
+                    onSubmitEditing={() => this.emailInput.focus()} />
                     
                     <TextInput style={styles.inputText} 
                     placeholder='E-Mail'   
@@ -65,13 +68,17 @@ class SignIn extends React.Component {
                     autoCorrect={false}                     
                     keyboardType='email-address' 
                     returnKeyType="next" 
-                    onChangeText={(text) => this.setState({email : text})} />
+                    onChangeText={(text) => this.setState({email : text})}
+                    ref={(input)=> this.emailInput = input}  
+                    onSubmitEditing={() => this.passwordInput.focus()} />
 
                     <TextInput style = {styles.inputText}   
                     placeholder='Password' 
                     placeholderTextColor='rgba(225,225,225,0.7)'
                     returnKeyType="next" 
                     onChangeText={(text) => this.setState({password : text})}
+                    ref={(input)=> this.passwordInput = input}  
+                    onSubmitEditing={() => this.passwordInput2.focus()}
                     secureTextEntry/>
                     
                     <TextInput style = {styles.inputText}   
@@ -79,6 +86,7 @@ class SignIn extends React.Component {
                     placeholderTextColor='rgba(225,225,225,0.7)'
                     returnKeyType="go" 
                     onChangeText={(text) => this.setState({password2 : text})}
+                    ref={(input)=> this.passwordInput2 = input}  
                     secureTextEntry/>
 
                     <Button title="SIGNUP" onPress={this._submitSignUp}/>

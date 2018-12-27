@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, Button, Text, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import authService from '../api/auth'
 import styles from '../styles/signinStyle';
@@ -50,6 +50,7 @@ class SignIn extends React.Component {
                     placeholderTextColor='rgba(225,225,225,0.7)'
                     returnKeyType="go" 
                     onChangeText={(text) => this.setState({password : text})}
+                    ref={(input)=> this.passwordInput = input}
                     secureTextEntry/>
 
                     <Button title="SIGNIN" onPress={this._submitSignIn}/>
